@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🌐 Personal Portfolio Website
 
 A modern, responsive, and production-ready personal portfolio website built using Next.js, React, TypeScript, and Tailwind CSS.
@@ -78,3 +79,7 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+=======
+# my_portfolio_project
+Modern Personal Portfolio Website built with Next.js, TypeScript, and Tailwind CSS featuring animations, dark mode, and email contact functionality. Fully responsive and deployed on Vercel.
+>>>>>>> 7cbd10c166e3d58863a2e5ac6854e259c66944cb
