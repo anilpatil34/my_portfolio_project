@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # 🌐 Personal Portfolio Website
 
 A modern, responsive, and production-ready personal portfolio website built using Next.js, React, TypeScript, and Tailwind CSS.
@@ -82,4 +82,3 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 =======
 # my_portfolio_project
 Modern Personal Portfolio Website built with Next.js, TypeScript, and Tailwind CSS featuring animations, dark mode, and email contact functionality. Fully responsive and deployed on Vercel.
->>>>>>> 7cbd10c166e3d58863a2e5ac6854e259c66944cb
