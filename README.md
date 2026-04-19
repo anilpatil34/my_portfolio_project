@@ -9,7 +9,7 @@ This portfolio showcases my projects, skills, experience, and provides a contact
 
 ## 🚀 Live Demo
 
-🔗 https://your-portfolio.vercel.app
+🔗 https://my-portfolio-project-beige.vercel.app
 
 ---
 
