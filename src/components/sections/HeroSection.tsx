@@ -198,6 +198,8 @@ export function HeroSection() {
               className="flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-4"
             >
               <button
+                type="button"
+                suppressHydrationWarning
                 onClick={() => handleScroll("projects")}
                 className="btn-primary"
               >
@@ -205,6 +207,8 @@ export function HeroSection() {
                 View Projects
               </button>
               <button
+                type="button"
+                suppressHydrationWarning
                 onClick={() => handleScroll("contact")}
                 className="btn-outline"
               >
@@ -223,6 +227,8 @@ export function HeroSection() {
           className="absolute bottom-8 left-1/2 -translate-x-1/2"
         >
           <motion.button
+            type="button"
+            suppressHydrationWarning
             onClick={() => handleScroll("about")}
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 2, repeat: Infinity }}

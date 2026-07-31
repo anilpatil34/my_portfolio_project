@@ -23,6 +23,8 @@ export function ThemeToggle() {
 
   return (
     <motion.button
+      type="button"
+      suppressHydrationWarning
       id="theme-toggle"
       onClick={() => setTheme(isDark ? "light" : "dark")}
       className="relative w-10 h-10 rounded-xl flex items-center justify-center cursor-pointer overflow-hidden"

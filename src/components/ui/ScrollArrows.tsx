@@ -39,6 +39,8 @@ export function ScrollArrows() {
       <AnimatePresence>
         {showUp && (
           <motion.button
+            type="button"
+            suppressHydrationWarning
             key="scroll-up"
             initial={{ opacity: 0, scale: 0.6, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -75,6 +77,8 @@ export function ScrollArrows() {
       <AnimatePresence>
         {showDown && (
           <motion.button
+            type="button"
+            suppressHydrationWarning
             key="scroll-down"
             initial={{ opacity: 0, scale: 0.6, y: -10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}

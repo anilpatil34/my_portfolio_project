@@ -484,6 +484,7 @@ export function ContactSection() {
               {/* Submit */}
               <motion.button
                 type="submit"
+                suppressHydrationWarning
                 disabled={status === "loading"}
                 className="btn-primary w-full justify-center disabled:opacity-60"
                 whileHover={{ scale: status === "loading" ? 1 : 1.02 }}

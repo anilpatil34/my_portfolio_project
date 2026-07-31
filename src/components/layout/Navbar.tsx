@@ -134,6 +134,8 @@ export function Navbar() {
 
               {/* Mobile menu button */}
               <motion.button
+                type="button"
+                suppressHydrationWarning
                 className="md:hidden p-2 rounded-lg"
                 style={{
                   background: "var(--bg-card)",
@@ -177,6 +179,8 @@ export function Navbar() {
             >
               <div className="flex justify-end mb-8">
                 <button
+                  type="button"
+                  suppressHydrationWarning
                   onClick={() => setIsMobileOpen(false)}
                   className="p-2 rounded-lg"
                   style={{
