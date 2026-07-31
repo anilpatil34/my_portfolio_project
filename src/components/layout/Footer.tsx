@@ -1,6 +1,6 @@
 "use client";
 
-import { Mail, Heart, ArrowUp } from "lucide-react";
+import { Mail, ArrowUp } from "lucide-react";
 import { personalInfo } from "@/lib/data";
 import { SOCIAL_LINKS, NAV_LINKS } from "@/lib/constants";
 
@@ -150,11 +150,10 @@ export function Footer() {
           style={{ borderTop: "1px solid var(--border-color)" }}
         >
           <p
-            className="text-sm flex items-center gap-1"
+            className="text-sm"
             style={{ color: "var(--text-tertiary)" }}
           >
-            © {year} {personalInfo.name}. Made with
-            <Heart size={14} style={{ color: "var(--accent-primary)" }} fill="var(--accent-primary)" />
+            © {year} {personalInfo.name} | All Rights Reserved
           </p>
 
           <a

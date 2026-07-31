@@ -273,12 +273,12 @@ body::before {
 .section-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 100px 24px;
+  padding: 80px 24px;
 }
 
 @media (max-width: 768px) {
   .section-container {
-    padding: 60px 16px;
+    padding: 50px 16px;
   }
 }
 

@@ -108,6 +108,62 @@ export function AboutSection() {
                 );
               })}
             </StaggerContainer>
+
+            {/* Philosophy / Approach Section */}
+            <div
+              className="mt-6 glass-card p-6 sm:p-8"
+              style={{
+                borderTop: "2px solid var(--accent-primary)",
+              }}
+            >
+              <h4
+                className="text-lg font-semibold mb-5 gradient-text"
+              >
+                My Approach
+              </h4>
+              <div className="space-y-5">
+                {[
+                  {
+                    icon: "✦",
+                    title: "Clean & Scalable Code",
+                    desc: "Writing maintainable, well-documented code that stands the test of time — because great software is built on a solid foundation.",
+                  },
+                  {
+                    icon: "◈",
+                    title: "User-First Design",
+                    desc: "Every pixel serves a purpose. I focus on intuitive interfaces and seamless experiences that delight users and drive engagement.",
+                  },
+                  {
+                    icon: "⟡",
+                    title: "Continuous Growth",
+                    desc: "Technology never stands still, and neither do I. I embrace new tools, frameworks, and methodologies to stay at the cutting edge.",
+                  },
+                ].map((item) => (
+                  <div key={item.title} className="flex gap-4 items-start group">
+                    <span
+                      className="text-lg mt-0.5 shrink-0 transition-transform duration-300 group-hover:scale-125"
+                      style={{ color: "var(--accent-primary)" }}
+                    >
+                      {item.icon}
+                    </span>
+                    <div>
+                      <h5
+                        className="text-sm font-semibold mb-1"
+                        style={{ color: "var(--text-primary)" }}
+                      >
+                        {item.title}
+                      </h5>
+                      <p
+                        className="text-xs leading-relaxed"
+                        style={{ color: "var(--text-secondary)" }}
+                      >
+                        {item.desc}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </AnimatedSection>
         </div>
       </div>

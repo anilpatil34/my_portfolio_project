@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, type FormEvent } from "react";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import {
   Send,
@@ -37,16 +38,102 @@ type FormStatus = "idle" | "loading" | "success" | "error";
 
 export function ContactSection() {
   const formRef = useRef<HTMLFormElement>(null);
+  const router = useRouter();
   const [status, setStatus] = useState<FormStatus>("idle");
   const [errorMessage, setErrorMessage] = useState("");
   const [formData, setFormData] = useState({
     from_name: "",
     from_email: "",
+    phone: "",
     message: "",
   });
+  const [errors, setErrors] = useState<{
+    from_name?: string;
+    from_email?: string;
+    phone?: string;
+    message?: string;
+  }>({});
+
+  const [touched, setTouched] = useState<{
+    from_name?: boolean;
+    from_email?: boolean;
+    phone?: boolean;
+    message?: boolean;
+  }>({});
+
+  const validateField = (name: string, value: string): string => {
+    const trimmed = value.trim();
+    if (name === "from_name") {
+      if (!trimmed) return "Full name is required";
+      if (trimmed.length < 2) return "Name must be at least 2 characters";
+      if (!/^[a-zA-Z\s.'-]+$/.test(trimmed)) return "Name should contain letters only";
+    }
+    if (name === "from_email") {
+      if (!trimmed) return "Email address is required";
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(trimmed)) return "Please enter a valid email address";
+    }
+    if (name === "phone") {
+      if (!trimmed) return "Mobile number is required";
+      const phoneDigits = trimmed.replace(/\D/g, "");
+      if (phoneDigits.length < 10) return "Please enter a valid 10-digit mobile number";
+      if (phoneDigits.length > 15) return "Mobile number is too long";
+    }
+    if (name === "message") {
+      if (!trimmed) return "Message is required";
+      if (trimmed.length < 10) return "Message must be at least 10 characters long";
+    }
+    return "";
+  };
+
+  const handleBlur = (field: "from_name" | "from_email" | "phone" | "message") => {
+    setTouched((prev) => ({ ...prev, [field]: true }));
+    const errorMsg = validateField(field, formData[field]);
+    setErrors((prev) => ({ ...prev, [field]: errorMsg }));
+  };
+
+  const handleChange = (
+    field: "from_name" | "from_email" | "phone" | "message",
+    value: string
+  ) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+    if (touched[field]) {
+      const errorMsg = validateField(field, value);
+      setErrors((prev) => ({ ...prev, [field]: errorMsg }));
+    }
+  };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+
+    // Mark all as touched
+    const allTouched = {
+      from_name: true,
+      from_email: true,
+      phone: true,
+      message: true,
+    };
+    setTouched(allTouched);
+
+    // Validate all fields
+    const nameErr = validateField("from_name", formData.from_name);
+    const emailErr = validateField("from_email", formData.from_email);
+    const phoneErr = validateField("phone", formData.phone);
+    const msgErr = validateField("message", formData.message);
+
+    const newErrors = {
+      from_name: nameErr,
+      from_email: emailErr,
+      phone: phoneErr,
+      message: msgErr,
+    };
+
+    setErrors(newErrors);
+
+    if (nameErr || emailErr || phoneErr || msgErr) {
+      return;
+    }
+
     setStatus("loading");
     setErrorMessage("");
 
@@ -64,15 +151,16 @@ export function ContactSection() {
       }
 
       setStatus("success");
-      setFormData({ from_name: "", from_email: "", message: "" });
-
-      setTimeout(() => setStatus("idle"), 5000);
+      setFormData({ from_name: "", from_email: "", phone: "", message: "" });
+      setTouched({});
+      setErrors({});
+      setTimeout(() => setStatus("idle"), 7000);
     } catch (err) {
       setStatus("error");
       setErrorMessage(
         err instanceof Error ? err.message : "Failed to send message"
       );
-      setTimeout(() => setStatus("idle"), 5000);
+      setTimeout(() => setStatus("idle"), 7000);
     }
   };
 
@@ -229,6 +317,7 @@ export function ContactSection() {
             <form
               ref={formRef}
               onSubmit={handleSubmit}
+              noValidate
               className="glass-card p-8 space-y-6"
               style={{ cursor: "default" }}
             >
@@ -244,19 +333,32 @@ export function ContactSection() {
                 <input
                   id="contact-name"
                   type="text"
-                  required
                   value={formData.from_name}
-                  onChange={(e) =>
-                    setFormData({ ...formData, from_name: e.target.value })
-                  }
-                  placeholder="John Doe"
+                  onChange={(e) => handleChange("from_name", e.target.value)}
+                  onBlur={() => handleBlur("from_name")}
+                  placeholder="Enter your name"
                   className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-all duration-300 focus:ring-2"
                   style={{
                     background: "var(--bg-secondary)",
-                    border: "1px solid var(--border-color)",
+                    border: touched.from_name && errors.from_name
+                      ? "1px solid rgba(239, 68, 68, 0.8)"
+                      : touched.from_name && !errors.from_name
+                      ? "1px solid rgba(16, 185, 129, 0.5)"
+                      : "1px solid var(--border-color)",
                     color: "var(--text-primary)",
                   }}
                 />
+                {touched.from_name && errors.from_name && (
+                  <motion.p
+                    initial={{ opacity: 0, y: -4 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-xs mt-1.5 flex items-center gap-1 font-medium"
+                    style={{ color: "#ef4444" }}
+                  >
+                    <AlertCircle size={13} />
+                    {errors.from_name}
+                  </motion.p>
+                )}
               </div>
 
               {/* Email */}
@@ -271,19 +373,72 @@ export function ContactSection() {
                 <input
                   id="contact-email"
                   type="email"
-                  required
                   value={formData.from_email}
-                  onChange={(e) =>
-                    setFormData({ ...formData, from_email: e.target.value })
-                  }
-                  placeholder="john@example.com"
+                  onChange={(e) => handleChange("from_email", e.target.value)}
+                  onBlur={() => handleBlur("from_email")}
+                  placeholder="Enter your email address"
                   className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-all duration-300 focus:ring-2"
                   style={{
                     background: "var(--bg-secondary)",
-                    border: "1px solid var(--border-color)",
+                    border: touched.from_email && errors.from_email
+                      ? "1px solid rgba(239, 68, 68, 0.8)"
+                      : touched.from_email && !errors.from_email
+                      ? "1px solid rgba(16, 185, 129, 0.5)"
+                      : "1px solid var(--border-color)",
                     color: "var(--text-primary)",
                   }}
                 />
+                {touched.from_email && errors.from_email && (
+                  <motion.p
+                    initial={{ opacity: 0, y: -4 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-xs mt-1.5 flex items-center gap-1 font-medium"
+                    style={{ color: "#ef4444" }}
+                  >
+                    <AlertCircle size={13} />
+                    {errors.from_email}
+                  </motion.p>
+                )}
+              </div>
+
+              {/* Phone Number */}
+              <div>
+                <label
+                  htmlFor="contact-phone"
+                  className="block text-sm font-medium mb-2"
+                  style={{ color: "var(--text-primary)" }}
+                >
+                  Mobile Number
+                </label>
+                <input
+                  id="contact-phone"
+                  type="tel"
+                  value={formData.phone}
+                  onChange={(e) => handleChange("phone", e.target.value)}
+                  onBlur={() => handleBlur("phone")}
+                  placeholder="Enter your mobile number"
+                  className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-all duration-300 focus:ring-2"
+                  style={{
+                    background: "var(--bg-secondary)",
+                    border: touched.phone && errors.phone
+                      ? "1px solid rgba(239, 68, 68, 0.8)"
+                      : touched.phone && !errors.phone
+                      ? "1px solid rgba(16, 185, 129, 0.5)"
+                      : "1px solid var(--border-color)",
+                    color: "var(--text-primary)",
+                  }}
+                />
+                {touched.phone && errors.phone && (
+                  <motion.p
+                    initial={{ opacity: 0, y: -4 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-xs mt-1.5 flex items-center gap-1 font-medium"
+                    style={{ color: "#ef4444" }}
+                  >
+                    <AlertCircle size={13} />
+                    {errors.phone}
+                  </motion.p>
+                )}
               </div>
 
               {/* Message */}
@@ -297,20 +452,33 @@ export function ContactSection() {
                 </label>
                 <textarea
                   id="contact-message"
-                  required
                   rows={5}
                   value={formData.message}
-                  onChange={(e) =>
-                    setFormData({ ...formData, message: e.target.value })
-                  }
+                  onChange={(e) => handleChange("message", e.target.value)}
+                  onBlur={() => handleBlur("message")}
                   placeholder="Tell me about your project or opportunity..."
                   className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-all duration-300 resize-none focus:ring-2"
                   style={{
                     background: "var(--bg-secondary)",
-                    border: "1px solid var(--border-color)",
+                    border: touched.message && errors.message
+                      ? "1px solid rgba(239, 68, 68, 0.8)"
+                      : touched.message && !errors.message
+                      ? "1px solid rgba(16, 185, 129, 0.5)"
+                      : "1px solid var(--border-color)",
                     color: "var(--text-primary)",
                   }}
                 />
+                {touched.message && errors.message && (
+                  <motion.p
+                    initial={{ opacity: 0, y: -4 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-xs mt-1.5 flex items-center gap-1 font-medium"
+                    style={{ color: "#ef4444" }}
+                  >
+                    <AlertCircle size={13} />
+                    {errors.message}
+                  </motion.p>
+                )}
               </div>
 
               {/* Submit */}
@@ -337,17 +505,17 @@ export function ContactSection() {
               {/* Status messages */}
               {status === "success" && (
                 <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="flex items-center gap-2 text-sm font-medium p-3 rounded-xl"
+                  initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  className="flex items-center gap-3 text-sm font-semibold p-4 rounded-xl shadow-lg"
                   style={{
-                    background: "rgba(16, 185, 129, 0.1)",
-                    border: "1px solid rgba(16, 185, 129, 0.3)",
+                    background: "rgba(16, 185, 129, 0.12)",
+                    border: "1px solid rgba(16, 185, 129, 0.4)",
                     color: "#10b981",
                   }}
                 >
-                  <CheckCircle size={16} />
-                  Message sent successfully! I&apos;ll get back to you soon.
+                  <CheckCircle size={20} className="shrink-0 text-emerald-400" />
+                  <span>Message sent successfully! Thank you for reaching out. I&apos;ll get back to you soon.</span>
                 </motion.div>
               )}
 

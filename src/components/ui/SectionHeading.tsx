@@ -16,7 +16,7 @@ export function SectionHeading({
   const alignClass = align === "center" ? "text-center" : "text-left";
 
   return (
-    <AnimatedSection direction="up" className={`mb-16 ${alignClass}`}>
+    <AnimatedSection direction="up" className={`mb-12 ${alignClass}`}>
       <span
         className="inline-block text-sm font-semibold tracking-widest uppercase mb-3 px-4 py-1.5 rounded-full"
         style={{

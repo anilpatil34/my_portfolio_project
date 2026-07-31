@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Download } from "lucide-react";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { NAV_LINKS } from "@/lib/constants";
 import { personalInfo } from "@/lib/data";
@@ -115,6 +115,21 @@ export function Navbar() {
 
             {/* Right side */}
             <div className="flex items-center gap-3">
+              {/* Download CV — desktop only */}
+              <a
+                href="/Anil_Patil_Resume.pdf"
+                download
+                className="hidden md:inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-lg transition-all duration-300 hover:scale-105"
+                style={{
+                  background: "var(--gradient-primary)",
+                  color: "white",
+                }}
+                id="navbar-download-cv"
+              >
+                <Download size={16} />
+                Download CV
+              </a>
+
               <ThemeToggle />
 
               {/* Mobile menu button */}
@@ -207,14 +222,14 @@ export function Navbar() {
 
               <div className="mt-auto pt-8">
                 <a
-                  href="#contact"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleNavClick("#contact");
-                  }}
+                  href="/Anil_Patil_Resume.pdf"
+                  download
                   className="btn-primary w-full justify-center"
+                  onClick={() => setIsMobileOpen(false)}
+                  id="mobile-download-cv"
                 >
-                  Let&apos;s Talk
+                  <Download size={18} />
+                  Download CV
                 </a>
               </div>
             </motion.div>
