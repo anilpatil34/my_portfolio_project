@@ -6,7 +6,7 @@ import {
   StaggerContainer,
   StaggerItem,
 } from "@/components/ui/AnimatedSection";
-import { aboutData, personalInfo } from "@/lib/data";
+import { aboutData } from "@/lib/data";
 import { Code2, Rocket, Users, Coffee } from "lucide-react";
 
 const statIcons = [Code2, Rocket, Users, Coffee];
@@ -22,30 +22,9 @@ export function AboutSection() {
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          {/* Left: Image & Text */}
+          {/* Left: Text */}
           <AnimatedSection direction="left">
             <div className="space-y-8">
-              {/* Profile Section */}
-              <div className="flex items-center gap-6">
-                <div className="relative shrink-0">
-                  <div className="absolute -inset-1 rounded-2xl blur-md bg-gradient-to-tr from-purple-600 to-blue-500 opacity-50 shadow-lg" />
-                  <img
-                    src={personalInfo.avatarUrl}
-                    alt={personalInfo.name}
-                    className="relative w-28 h-28 sm:w-32 sm:h-32 object-cover rounded-2xl z-10"
-                    style={{ border: "1px solid var(--border-color)", background: "var(--bg-secondary)" }}
-                  />
-                </div>
-                <div>
-                  <h3 className="text-2xl sm:text-3xl font-bold mb-1" style={{ color: "var(--text-primary)" }}>
-                    {personalInfo.name}
-                  </h3>
-                  <p className="text-base sm:text-lg font-medium gradient-text">
-                    {personalInfo.title}
-                  </p>
-                </div>
-              </div>
-
               {/* Bio Paragraphs */}
               <div className="space-y-5">
                 {aboutData.paragraphs.map((paragraph, i) => (
@@ -57,17 +36,6 @@ export function AboutSection() {
                     {paragraph}
                   </p>
                 ))}
-              </div>
-
-              {/* Download CV button */}
-              <div className="pt-4">
-                <a
-                  href={personalInfo.resumeUrl}
-                  className="btn-primary"
-                  download
-                >
-                  Download Resume
-                </a>
               </div>
             </div>
           </AnimatedSection>
