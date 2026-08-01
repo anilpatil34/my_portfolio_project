@@ -76,8 +76,7 @@ export function ContactSection() {
     if (name === "phone") {
       if (!trimmed) return "Mobile number is required";
       const phoneDigits = trimmed.replace(/\D/g, "");
-      if (phoneDigits.length < 10) return "Please enter a valid 10-digit mobile number";
-      if (phoneDigits.length > 15) return "Mobile number is too long";
+      if (phoneDigits.length !== 10) return "Mobile number must be exactly 10 digits";
     }
     if (name === "message") {
       if (!trimmed) return "Message is required";
@@ -96,6 +95,15 @@ export function ContactSection() {
     field: "from_name" | "from_email" | "phone" | "message",
     value: string
   ) => {
+    if (field === "phone") {
+      const sanitized = value.replace(/\D/g, "").slice(0, 10);
+      setFormData((prev) => ({ ...prev, phone: sanitized }));
+      if (touched.phone) {
+        const errorMsg = validateField("phone", sanitized);
+        setErrors((prev) => ({ ...prev, phone: errorMsg }));
+      }
+      return;
+    }
     setFormData((prev) => ({ ...prev, [field]: value }));
     if (touched[field]) {
       const errorMsg = validateField(field, value);
@@ -173,7 +181,7 @@ export function ContactSection() {
           subtitle="Have a project idea, a position to fill, or just want to say hi? My inbox is always open!"
         />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 max-w-5xl mx-auto">
           {/* Left: Contact Info */}
           <AnimatedSection direction="left">
             <div className="space-y-8">
@@ -318,6 +326,7 @@ export function ContactSection() {
               ref={formRef}
               onSubmit={handleSubmit}
               noValidate
+              suppressHydrationWarning
               className="glass-card p-8 space-y-6"
               style={{ cursor: "default" }}
             >
@@ -333,6 +342,7 @@ export function ContactSection() {
                 <input
                   id="contact-name"
                   type="text"
+                  suppressHydrationWarning
                   value={formData.from_name}
                   onChange={(e) => handleChange("from_name", e.target.value)}
                   onBlur={() => handleBlur("from_name")}
@@ -373,6 +383,7 @@ export function ContactSection() {
                 <input
                   id="contact-email"
                   type="email"
+                  suppressHydrationWarning
                   value={formData.from_email}
                   onChange={(e) => handleChange("from_email", e.target.value)}
                   onBlur={() => handleBlur("from_email")}
@@ -413,10 +424,14 @@ export function ContactSection() {
                 <input
                   id="contact-phone"
                   type="tel"
+                  maxLength={10}
+                  pattern="[0-9]{10}"
+                  inputMode="numeric"
+                  suppressHydrationWarning
                   value={formData.phone}
                   onChange={(e) => handleChange("phone", e.target.value)}
                   onBlur={() => handleBlur("phone")}
-                  placeholder="Enter your mobile number"
+                  placeholder="Enter 10-digit mobile number"
                   className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-all duration-300 focus:ring-2"
                   style={{
                     background: "var(--bg-secondary)",
@@ -453,6 +468,7 @@ export function ContactSection() {
                 <textarea
                   id="contact-message"
                   rows={5}
+                  suppressHydrationWarning
                   value={formData.message}
                   onChange={(e) => handleChange("message", e.target.value)}
                   onBlur={() => handleBlur("message")}

@@ -19,7 +19,7 @@ export function TimelineItem({ entry, index }: TimelineItemProps) {
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.6, delay: index * 0.15 }}
-      className={`relative flex items-start gap-8 mb-12 ${
+      className={`relative flex items-start gap-8 mb-8 lg:mb-10 ${
         isLeft
           ? "md:flex-row md:text-right"
           : "md:flex-row-reverse md:text-left"

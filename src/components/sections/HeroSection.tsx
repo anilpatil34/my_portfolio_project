@@ -13,7 +13,7 @@ export function HeroSection() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-grid"
+      className="relative min-h-[calc(100vh-4rem)] py-12 lg:py-16 flex items-center justify-center overflow-hidden bg-grid"
     >
       {/* Animated background decorations */}
       <div className="absolute inset-0 pointer-events-none">
@@ -72,11 +72,11 @@ export function HeroSection() {
       </div>
 
       <div className="section-container relative z-10">
-        <div className="flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-16">
-          {/* Left: Profile Image */}
+        <div className="flex flex-col lg:flex-row items-center gap-6 sm:gap-10 lg:gap-16">
+          {/* Top/Left: Profile Image */}
           <motion.div
-            initial={{ opacity: 0, x: -60 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="flex-shrink-0"
           >
@@ -109,7 +109,7 @@ export function HeroSection() {
                 }}
               />
               <div
-                className="relative w-56 h-56 sm:w-64 sm:h-64 lg:w-72 lg:h-72 rounded-full overflow-hidden"
+                className="relative w-44 h-44 sm:w-60 sm:h-60 lg:w-72 lg:h-72 rounded-full overflow-hidden"
                 style={{
                   border: "4px solid var(--bg-primary)",
                 }}
@@ -133,7 +133,7 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="mb-6"
+              className="mb-4"
             >
               <span
                 className="inline-flex items-center gap-2 px-5 py-2 rounded-full text-sm font-medium"
@@ -153,7 +153,7 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
-              className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-4 tracking-tight"
+              className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-3 tracking-tight"
             >
               <span style={{ color: "var(--text-primary)" }}>Hi, I&apos;m </span>
               <span className="gradient-text">{personalInfo.firstName}</span>
@@ -164,7 +164,7 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="mb-5"
+              className="mb-4"
             >
               <h2
                 className="text-xl sm:text-2xl lg:text-3xl font-semibold"
@@ -179,7 +179,7 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.3 }}
-              className="text-base sm:text-lg max-w-xl mb-8"
+              className="text-base sm:text-lg max-w-xl mb-6 lg:mx-0"
               style={{
                 color: "var(--text-secondary)",
                 lineHeight: 1.8,
@@ -224,7 +224,7 @@ export function HeroSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+          className="mt-8 lg:mt-0 lg:absolute lg:bottom-6 lg:left-1/2 lg:-translate-x-1/2 flex justify-center"
         >
           <motion.button
             type="button"

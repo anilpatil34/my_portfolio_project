@@ -32,18 +32,18 @@ export function Footer() {
         borderTop: "1px solid var(--border-color)",
       }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
           {/* Brand */}
           <div>
-            <h3 className="text-2xl font-bold mb-4">
+            <h3 className="text-2xl font-bold mb-3">
               <span className="gradient-text">{personalInfo.firstName}</span>
               <span style={{ color: "var(--text-primary)" }}>
                 {personalInfo.lastName}
               </span>
             </h3>
             <p
-              className="text-sm mb-6 max-w-xs"
+              className="text-sm mb-4 max-w-xs"
               style={{ color: "var(--text-secondary)" }}
             >
               {personalInfo.title} passionate about building products that
@@ -52,7 +52,7 @@ export function Footer() {
 
             {/* Available badge */}
             <div
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold"
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold"
               style={{
                 background: "rgba(16, 185, 129, 0.1)",
                 border: "1px solid rgba(16, 185, 129, 0.3)",
@@ -67,12 +67,12 @@ export function Footer() {
           {/* Quick Links */}
           <div>
             <h4
-              className="text-sm font-semibold uppercase tracking-wider mb-4"
+              className="text-xs sm:text-sm font-semibold uppercase tracking-wider mb-3"
               style={{ color: "var(--text-primary)" }}
             >
               Quick Links
             </h4>
-            <ul className="space-y-3">
+            <ul className="space-y-2">
               {NAV_LINKS.map((link) => (
                 <li key={link.href}>
                   <a
@@ -96,7 +96,7 @@ export function Footer() {
           {/* Social */}
           <div>
             <h4
-              className="text-sm font-semibold uppercase tracking-wider mb-4"
+              className="text-xs sm:text-sm font-semibold uppercase tracking-wider mb-3"
               style={{ color: "var(--text-primary)" }}
             >
               Connect
@@ -113,7 +113,7 @@ export function Footer() {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110"
+                  className="w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110"
                   style={{
                     background: "var(--bg-card)",
                     border: "1px solid var(--border-color)",
@@ -131,12 +131,12 @@ export function Footer() {
                   }}
                   aria-label={label}
                 >
-                  <Icon size={18} />
+                  <Icon size={17} />
                 </a>
               ))}
             </div>
             <p
-              className="mt-6 text-sm"
+              className="mt-3 text-sm font-medium"
               style={{ color: "var(--text-secondary)" }}
             >
               {personalInfo.email}
@@ -146,11 +146,11 @@ export function Footer() {
 
         {/* Bottom bar */}
         <div
-          className="mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4"
+          className="mt-6 pt-5 sm:mt-8 sm:pt-6 flex flex-col sm:flex-row items-center justify-between gap-3"
           style={{ borderTop: "1px solid var(--border-color)" }}
         >
           <p
-            className="text-sm"
+            className="text-xs sm:text-sm"
             style={{ color: "var(--text-tertiary)" }}
           >
             © {year} {personalInfo.name} | All Rights Reserved
@@ -158,7 +158,7 @@ export function Footer() {
 
           <a
             href="#home"
-            className="w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110"
+            className="w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110"
             style={{
               background: "var(--bg-card)",
               border: "1px solid var(--border-color)",
@@ -166,7 +166,7 @@ export function Footer() {
             }}
             aria-label="Back to top"
           >
-            <ArrowUp size={18} />
+            <ArrowUp size={16} />
           </a>
         </div>
       </div>

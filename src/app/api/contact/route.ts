@@ -23,6 +23,15 @@ export async function POST(request: Request) {
       );
     }
 
+    // Phone validation (exactly 10 digits)
+    const phoneDigits = (phone || "").replace(/\D/g, "");
+    if (!phone || phoneDigits.length !== 10) {
+      return NextResponse.json(
+        { error: "Please enter a valid 10-digit mobile number" },
+        { status: 400 }
+      );
+    }
+
     // Verify environment variables are configured
     const gmailUser = process.env.GMAIL_USER;
     const gmailAppPassword = process.env.GMAIL_APP_PASSWORD;

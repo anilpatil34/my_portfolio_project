@@ -21,21 +21,46 @@ export function AboutSection() {
           subtitle="Get to know me, my journey, and what drives me as a developer."
         />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          {/* Left: Text */}
-          <AnimatedSection direction="left">
-            <div className="space-y-8">
-              {/* Bio Paragraphs */}
-              <div className="space-y-5">
-                {aboutData.paragraphs.map((paragraph, i) => (
-                  <p
-                    key={i}
-                    className="text-base leading-relaxed"
-                    style={{ color: "var(--text-secondary)" }}
-                  >
-                    {paragraph}
-                  </p>
-                ))}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+          {/* Left: Text & Core Strengths */}
+          <AnimatedSection direction="left" className="flex flex-col h-full justify-between space-y-6">
+            <div className="space-y-5">
+              {aboutData.paragraphs.map((paragraph, i) => (
+                <p
+                  key={i}
+                  className="text-base leading-relaxed"
+                  style={{ color: "var(--text-secondary)" }}
+                >
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+
+            {/* Quick Highlights / Focus Card */}
+            <div
+              className="glass-card p-6 rounded-2xl"
+              style={{ borderLeft: "3px solid var(--accent-primary)" }}
+            >
+              <h4 className="text-sm font-semibold uppercase tracking-wider mb-3" style={{ color: "var(--accent-tertiary)" }}>
+                Core Focus & Strengths
+              </h4>
+              <div className="grid grid-cols-2 gap-3 text-xs font-medium" style={{ color: "var(--text-primary)" }}>
+                <div className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full" style={{ background: "var(--accent-primary)" }} />
+                  Full Stack Development
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full" style={{ background: "var(--accent-secondary)" }} />
+                  UI/UX & Micro-interactions
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full" style={{ background: "var(--accent-tertiary)" }} />
+                  API Architecture & DBs
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full" style={{ background: "var(--accent-primary)" }} />
+                  Performance & SEO
+                </div>
               </div>
             </div>
           </AnimatedSection>

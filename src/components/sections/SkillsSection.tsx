@@ -20,7 +20,7 @@ export function SkillsSection() {
         />
 
         {/* Category Tabs */}
-        <AnimatedSection direction="up" className="mb-12">
+        <AnimatedSection direction="up" className="mb-8">
           <div
             className="flex justify-center gap-2 p-1.5 rounded-2xl max-w-md mx-auto"
             style={{
