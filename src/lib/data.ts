@@ -95,6 +95,30 @@ export type Project = {
 
 export const projectsData: Project[] = [
   {
+    id: "ai-first-crm-hcp",
+    title: "AI-First CRM for HCP Interaction Management",
+    description:
+      "An AI-powered CRM designed for pharmaceutical sales representatives to simplify Healthcare Professional (HCP) interaction management with automated form logging and follow-up intelligence.",
+    longDescription:
+      "An intelligent CRM application designed to simplify Healthcare Professional (HCP) interaction management for pharmaceutical sales representatives. Features an agentic LangGraph pipeline with 5 specialized AI tools for automated interaction logging, form auto-filling, AI-generated meeting summaries, follow-up suggestions, sentiment tracking, and doctor profile management.",
+    techStack: [
+      "Python",
+      "FastAPI",
+      "React 19",
+      "Redux Toolkit",
+      "LangGraph",
+      "LangChain",
+      "Groq API",
+      "SQLAlchemy",
+      "PostgreSQL",
+      "SQLite",
+    ],
+    githubUrl: "https://github.com/anilpatil34/AI-First-CRM-HCP.git",
+    liveUrl: "https://ai-first-crm-hcp-rho.vercel.app/",
+    imageUrl: "/images/hand-drawn-ai-healthcare-illustration_52683-156475.avif",
+    featured: true,
+  },
+  {
     id: "ai-career-copilot",
     title: "AI Career Copilot – Resume Analyzer & Job Assistant",
     description:
@@ -148,6 +172,39 @@ export type TimelineEntry = {
 };
 
 export const timelineData: TimelineEntry[] = [
+  {
+    id: "exp-ctc-tech",
+    type: "experience",
+    title: "Artificial Intelligence Intern",
+    organization: "CTC Tech Services",
+    location: "Pune, Maharashtra",
+    startDate: "Oct 2026",
+    endDate: "Present",
+    description:
+      "Contributing to AI-driven backend services and modular pipelines for fraud detection, risk analysis, and security monitoring.",
+    highlights: [
+      "Contributing to AI-driven backend services and modular pipelines for fraud detection, risk analysis, and security monitoring",
+      "Exploring and integrating open-source ML models (LightGBM, XGBoost) for model evaluation and risk-prediction workflows",
+      "Developing backend components in Java, Spring Boot, and Python with REST APIs and structured event-processing workflows",
+      "Working with PostgreSQL and Redis for data persistence and risk-context retrieval; applying Apache Kafka concepts for event-driven architecture and Docker for containerised environments",
+      "Emphasising explainability, audit trails, secure data handling, tenant isolation, and automated testing in sensitive-data systems",
+    ],
+  },
+  {
+    id: "exp-mr-network",
+    type: "experience",
+    title: "AI-ML Developer Intern",
+    organization: "MR Network",
+    location: "Pune, Maharashtra (On-site)",
+    startDate: "Aug 2026",
+    endDate: "Oct 2026",
+    description:
+      "Developed backend and AI services using Python and FastAPI, including AI-based OCR for document verification and AI automation agents.",
+    highlights: [
+      "Developed backend and AI services using Python and FastAPI, including AI-based OCR for document/proof verification and an AI chatbot for user assistance and information retrieval",
+      "Researched and implemented AI automation agents for real business workflows (AI Lead Generation Agent, AI Voice Calling Assistant); collaborated with the frontend team to integrate and test AI functionality",
+    ],
+  },
   {
   id: "exp-6 months",
   type: "experience",
@@ -251,6 +308,15 @@ export const achievementsData: Achievement[] = [
     description: "Completed 6 months internship in Python Full Stack Development, gaining hands-on experience in building scalable and responsive web applications.",
     icon: "🏆",
     link: "https://drive.google.com/file/d/1DVzILyhCb9de-96NNsY90lrQCrfjKUG_/view?usp=sharing",
+  },
+  {
+    id: "ach-aws-cloud",
+    title: "AWS Cloud Practitioner Essentials",
+    issuer: "AWS Training & Certification",
+    date: "2026",
+    description: "Completed AWS Cloud Practitioner Essentials training, strengthening understanding of AWS Cloud concepts, core services, cloud security, pricing, and billing.",
+    icon: "☁️",
+    link: "https://drive.google.com/file/d/115CCxt86tePHaPWsfdy6Bk8OM0nhoZiV/view?usp=sharing",
   },
   {
     id: "ach-3",

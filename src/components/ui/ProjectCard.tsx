@@ -13,17 +13,12 @@ const GithubIcon = ({ size = 20 }: { size?: number }) => (
 interface ProjectCardProps {
   project: Project;
   index: number;
+  disableAnimation?: boolean;
 }
 
-export function ProjectCard({ project, index }: ProjectCardProps) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="glass-card group overflow-hidden flex flex-col"
-    >
+export function ProjectCard({ project, index, disableAnimation = false }: ProjectCardProps) {
+  const cardContent = (
+    <div className="glass-card group overflow-hidden flex flex-col h-full">
       {/* Project Image */}
       <div
         className="relative h-48 overflow-hidden"
@@ -119,6 +114,22 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
           ))}
         </div>
       </div>
+    </div>
+  );
+
+  if (disableAnimation) {
+    return cardContent;
+  }
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="h-full"
+    >
+      {cardContent}
     </motion.div>
   );
 }

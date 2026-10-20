@@ -117,7 +117,7 @@ export function Navbar() {
             <div className="flex items-center gap-3">
               {/* Download CV — desktop only */}
               <a
-                href="/Anil_Patil_Resume.pdf"
+                href="/Anil_Python_Full_Developer_Resume.pdf"
                 download
                 className="hidden md:inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-lg transition-all duration-300 hover:scale-105"
                 style={{
@@ -226,7 +226,7 @@ export function Navbar() {
 
               <div className="mt-auto pt-8">
                 <a
-                  href="/Anil_Patil_Resume.pdf"
+                  href="/Anil_Python_Full_Developer_Resume.pdf"
                   download
                   className="btn-primary w-full justify-center"
                   onClick={() => setIsMobileOpen(false)}
